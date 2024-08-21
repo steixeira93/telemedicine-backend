@@ -25,6 +25,14 @@ export class UsersService {
     return this.usersRepository.save(userData);
   }
 
+  async findAllPatients(): Promise<User[]> {
+    return this.usersRepository.find({ where: { role: 'patient' } });
+  }
+
+  async findAllDoctors(): Promise<User[]> {
+    return this.usersRepository.find({ where: { role: 'doctor' } });
+  }
+
   async findOneById(id: number): Promise<User | undefined> {
     return this.usersRepository.findOne({ where: { id } });
   }
